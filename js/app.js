@@ -18,19 +18,6 @@ todoList.addEventListener("click", checked);
 progressList.addEventListener("click", checked);
 doneList.addEventListener("click", checked);
 
-// if local stroage todo is empty render it empty
-// if local storage is null create a todo storage
-// if local storage has items render it with items
-
-//check if storage exits, if it does render it if it does not, create it
-
-// let todos;
-// if (localStorage.getItem("todos") != null) {
-//   todos = JSON.parse(localStorage.getItem("todos"));
-// } else {
-//   localStorage.setItem("todos", JSON.stringify(todos));
-// }
-
 const svg = `<svg class="svg" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g class="check-box">
     <path class="vector" d="M16 0C7.17725 0 0 7.17725 0 16C0 24.8228 7.17725 32 16 32C24.8228 32 32 24.8228 32 16C32 7.17725 24.8228 0 16 0Z" fill="#e8e8e8" />
@@ -58,7 +45,6 @@ updateProgressCounter(); // UPDATING PROGRESS LIST TOTAL COUNT
 // ADDING TODO ITEM TO
 function addTodo(event) {
   event.preventDefault();
-  // console.log(todoList.children.length);
 
   if (JSON.parse(localStorage.getItem("todos")) != null) {
     if (todos.includes(todoInput.value)) {
@@ -113,7 +99,6 @@ function addTodo(event) {
 //li CLICK EVENTS FUNCTION
 function checked(e) {
   const item = e.target;
-  // console.log(todoList.children);
 
   // CHECK SVG ANIMATE
   if (item.classList[0] === "svg") {
@@ -184,7 +169,6 @@ function checked(e) {
     if (ulDiv === doneList) {
       removeDoneStorage(parent);
     }
-    console.log("fired");
 
     list.addEventListener("transitionend", function () {
       list.remove();
@@ -325,7 +309,6 @@ function removeLocalStorage(todo) {
 
 // CREATE PROGRESS LOCAL STORAGE
 function saveProgressList(todo) {
-  // console.log("im here");
   let progressTodos;
   if (localStorage.getItem("progressTodos") === null) {
     progressTodos = [];
@@ -383,7 +366,6 @@ function removeProgressStorage(todo) {
 
 // STORAGE FOR DONE LIST
 function saveDoneList(todo) {
-  console.log("Adding");
   let doneTodos;
   if (localStorage.getItem("doneTodos") === null) {
     doneTodos = [];
@@ -436,7 +418,6 @@ function renderDoneTodos() {
 
 // REMOVE ITEM FROM DONE LIST STORAGE
 function removeDoneStorage(todo) {
-  console.log("deleting");
   let doneTodos;
   if (localStorage.getItem("doneTodos") === null) {
     doneTodos = [];
