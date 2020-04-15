@@ -8,7 +8,27 @@ $second-main: #cccccc;
 // $main: #dde2ec;
 $gray-text: #2c2c2c;
 
+
+$display-wide: 1920;
+$display-narrow: 375;
+
+@mixin fluid($property, $minValue, $maxValue) {
+    $x: ($maxValue - $minValue)/($display-wide - $display-narrow);
+    $y: $maxValue - $display-wide * $x;
+    #{$property}: calc(#{100*$x}vw + #{$y}px);
+}
+
+$mobile-display-wide: 875;
+$mobile-display-narrow: 375;
+
+@mixin mobileFluid($property, $minValue, $maxValue) {
+    $x: ($maxValue - $minValue)/($mobile-display-wide - $mobile-display-narrow);
+    $y: $maxValue - $mobile-display-wide * $x;
+    #{$property}: calc(#{100*$x}vw + #{$y}px);
+}
+
 @import 'form';
+@import 'mobile';
 
 * {
     margin: 0;
@@ -40,7 +60,7 @@ a {
 }
 
 h2 {
-    font-size: $header2;
+    @include fluid('font-size', 16, 24);
 
 }
 
@@ -63,10 +83,7 @@ ul {
 }
 
 // HEADER DESIGN
-#logo {
-    font-family: 'Kaushan Script', cursive;
-    font-size: 4rem;
-}
+
 
 .main-header {
     background-color: $main;
@@ -76,21 +93,28 @@ nav {
     width: 90%;
     min-height: 13vh;
     margin: auto;
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 2fr 17fr 1fr;
+    grid-template-rows: 2fr;
+    justify-items: center;
     align-items: center;
+    grid-auto-flow: auto;
 
-    h1 {
+
+    #logo {
+        font-family: 'Kaushan Script', cursive;
         margin-right: auto;
         color: white;
+        @include fluid('font-size', 24, 50);
     }
 
     .add-form {
-        margin-right: auto;
+        text-align: center;
     }
 
     .fas {
         color: white;
+        justify-self: end;
     }
 }
 
@@ -99,11 +123,12 @@ nav {
 // TODO GROUP SECTION
 .todo-groups {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: flex-start;
     width: 95%;
     margin: auto;
     min-height: 85vh;
+    flex-wrap: wrap;
 
 
 }
@@ -117,9 +142,24 @@ nav {
     border-radius: 5px;
 
     h2 {
-        font-size: 2.2rem;
-        font-weight: 500;
+
+        font-weight: 400;
     }
+}
+
+.new-todo {
+    flex-basis: 30rem;
+    flex-grow: 1;
+}
+
+.in-progress {
+    flex-basis: 30rem;
+    flex-grow: 1;
+}
+
+.done-todo {
+    flex-basis: 30rem;
+    flex-grow: 1;
 }
 
 .group-header {
@@ -132,8 +172,15 @@ nav {
     border-radius: 5px;
     pointer-events: none;
 
+    h2 {
+        @include fluid('font-size', 16, 24);
+        font-weight: 500;
+    }
+
+
 
     .progressNr {
+
         display: inline-block;
         line-height: 0px;
 
@@ -213,7 +260,8 @@ ul {
 
     h2 {
         margin-bottom: 1rem;
-        font-size: 2.4rem;
+        @include fluid('font-size', 18, 24);
+        font-family: 'Poppins', sans-serif;
         pointer-events: auto;
         cursor: pointer;
     }
@@ -401,14 +449,3 @@ ul {
 // }
 
 // CHECKBOX ROUNDED
-
-// TODO ITEM END
-.new-todo {}
-
-.in-progress {
-    // background-color: rgb(68, 23, 49);
-}
-
-.done-todo {
-    // background-color: rgb(117, 34, 34);
-}

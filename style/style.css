@@ -51,6 +51,46 @@ form button i {
   padding-right: 8px;
 }
 
+@media only screen and (max-width: 875px) {
+  .main-header {
+    min-height: 20vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  #logo {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    grid-column: 1/2;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1/2;
+  }
+  .fas {
+    -ms-grid-column: 3;
+    -ms-grid-column-span: 1;
+    grid-column: 3/4;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1/2;
+  }
+  .add-form {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+    grid-column: 1/4;
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 1;
+    grid-row: 2/3;
+  }
+  form input {
+    width: calc(83vw + -96.25px);
+    font-size: calc(1.2vw + 7.5px);
+  }
+  form button {
+    font-size: calc(1.2vw + 7.5px);
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -81,7 +121,7 @@ a {
 }
 
 h2 {
-  font-size: 2.4rem;
+  font-size: calc(0.5178vw + 14.05825px);
 }
 
 h3 {
@@ -102,11 +142,6 @@ ul {
   list-style: none;
 }
 
-#logo {
-  font-family: 'Kaushan Script', cursive;
-  font-size: 4rem;
-}
-
 .main-header {
   background-color: #004cff;
 }
@@ -115,42 +150,51 @@ nav {
   width: 90%;
   min-height: 13vh;
   margin: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 17fr 1fr;
+      grid-template-columns: 2fr 17fr 1fr;
+  -ms-grid-rows: 2fr;
+      grid-template-rows: 2fr;
+  justify-items: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  grid-auto-flow: auto;
 }
 
-nav h1 {
+nav #logo {
+  font-family: 'Kaushan Script', cursive;
   margin-right: auto;
   color: white;
+  font-size: calc(1.68285vw + 17.68932px);
 }
 
 nav .add-form {
-  margin-right: auto;
+  text-align: center;
 }
 
 nav .fas {
   color: white;
+  -ms-grid-column-align: end;
+      justify-self: end;
 }
 
 .todo-groups {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
   width: 95%;
   margin: auto;
   min-height: 85vh;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .group {
@@ -163,8 +207,31 @@ nav .fas {
 }
 
 .group h2 {
-  font-size: 2.2rem;
-  font-weight: 500;
+  font-weight: 400;
+}
+
+.new-todo {
+  -ms-flex-preferred-size: 30rem;
+      flex-basis: 30rem;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.in-progress {
+  -ms-flex-preferred-size: 30rem;
+      flex-basis: 30rem;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.done-todo {
+  -ms-flex-preferred-size: 30rem;
+      flex-basis: 30rem;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 .group-header {
@@ -180,6 +247,11 @@ nav .fas {
   padding: 12px;
   border-radius: 5px;
   pointer-events: none;
+}
+
+.group-header h2 {
+  font-size: calc(0.5178vw + 14.05825px);
+  font-weight: 500;
 }
 
 .group-header .progressNr {
@@ -257,7 +329,8 @@ ul li.progress {
 
 .li-content h2 {
   margin-bottom: 1rem;
-  font-size: 2.4rem;
+  font-size: calc(0.38835vw + 16.54369px);
+  font-family: 'Poppins', sans-serif;
   pointer-events: auto;
   cursor: pointer;
 }
