@@ -1,0 +1,414 @@
+$header1: 2.5rem;
+$header2: 2.4rem;
+$header3: 2.5rem;
+$header4: 3rem;
+$text: 1.6rem;
+$main: #004cff;
+$second-main: #cccccc;
+// $main: #dde2ec;
+$gray-text: #2c2c2c;
+
+@import 'form';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Work Sans', sans-serif;
+}
+
+h1 {
+    font-size: $header1;
+
+}
+
+li,
+button,
+label,
+input,
+p,
+a {
+    font-size: $text;
+    font-family: 'Work Sans', sans-serif;
+}
+
+h2 {
+    font-size: $header2;
+
+}
+
+h3 {
+    font-size: $header3;
+}
+
+h4,
+h5 {
+    font-size: $header4;
+}
+
+a {
+    text-decoration: none;
+    color: $gray-text;
+}
+
+ul {
+    list-style: none;
+}
+
+// HEADER DESIGN
+#logo {
+    font-family: 'Kaushan Script', cursive;
+    font-size: 4rem;
+}
+
+.main-header {
+    background-color: $main;
+}
+
+nav {
+    width: 90%;
+    min-height: 13vh;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    h1 {
+        margin-right: auto;
+        color: white;
+    }
+
+    .add-form {
+        margin-right: auto;
+    }
+
+    .fas {
+        color: white;
+    }
+}
+
+//  HEADER ENDED
+
+// TODO GROUP SECTION
+.todo-groups {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    width: 95%;
+    margin: auto;
+    min-height: 85vh;
+
+
+}
+
+.group {
+    height: 100%;
+    width: 90%;
+    margin: 2rem;
+    background-color: rgb(240, 240, 240);
+    padding: 2rem;
+    border-radius: 5px;
+
+    h2 {
+        font-size: 2.2rem;
+        font-weight: 500;
+    }
+}
+
+.group-header {
+    display: flex;
+    align-items: center;
+    height: 9vh;
+    background: #dfdfdf;
+    color: black;
+    padding: 12px;
+    border-radius: 5px;
+    pointer-events: none;
+
+
+    .progressNr {
+        display: inline-block;
+        line-height: 0px;
+
+        border-radius: 50%;
+        background-color: $second-main;
+        padding: 0.2rem;
+        margin-left: 8px;
+        overflow: hidden;
+
+        span {
+            font-size: 1.6rem;
+            display: inline-block;
+
+            padding-top: 50%;
+            padding-bottom: 50%;
+
+            margin-left: 8px;
+            margin-right: 8px;
+        }
+    }
+}
+
+// TODO ITEM
+ul {
+    margin-top: 2rem;
+
+    li {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        background-color: white;
+        padding: 20px;
+        border-left: 5px solid black;
+        border-radius: 6px;
+        margin-top: 2rem;
+        cursor: pointer;
+
+
+
+
+    }
+
+    li.done {
+        border-left: 10px solid #66bb6a !important;
+        color: #66bb6a !important;
+
+    }
+
+    li.progress {
+        border-left: 10px solid #ffa600;
+        color: #ffa600;
+
+    }
+}
+
+
+
+.svg.active {
+    display: none;
+
+}
+
+.li-clicked {
+    display: flex;
+}
+
+.svg {
+    flex-basis: 4rem;
+}
+
+.li-content {
+    flex-basis: 40rem;
+
+    padding-left: 1rem;
+    pointer-events: none;
+
+
+    h2 {
+        margin-bottom: 1rem;
+        font-size: 2.4rem;
+        pointer-events: auto;
+        cursor: pointer;
+    }
+
+    .remove-todo {
+        background-color: rgb(253, 64, 64);
+        color: white;
+        padding: 6px 8px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.4rem;
+        display: none;
+        pointer-events: auto;
+        cursor: pointer;
+        // animation: removeButton 0.5s linear forwards;
+
+        i {
+            margin-right: 0.7rem;
+            pointer-events: none;
+        }
+    }
+}
+
+.vector {
+    pointer-events: none;
+}
+
+.tick {
+    opacity: 1;
+    pointer-events: none;
+}
+
+.tick.checked {
+    animation: checkanimate 0.5s forwards;
+    transform-origin: bottom;
+    transform-box: fill-box;
+    transition: all 0.5s ease;
+}
+
+.vector.boxchecked {
+    fill: #66bb6a;
+
+}
+
+
+
+.reveal {
+    opacity: 0;
+    display: block !important;
+    animation: reveal 0.5s linear forwards;
+    transition: all 0.5s ease-in-out;
+
+}
+
+
+.remove {
+    opacity: 0;
+    animation: removeButton 0.5s linear forwards;
+    transition: all 0.5s ease-in-out;
+}
+
+.draggable {
+    opacity: 1;
+}
+
+.draggable.dragging {
+    opacity: 0.3;
+}
+
+.fall {
+    transform: translateX(-8rem);
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+
+.dragMark {
+    height: 18px;
+    width: 100%;
+    display: flex;
+    background-color: #f55;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    transition: all 0.5s ease-in-out;
+}
+
+// .dragMark.show {
+//     display: flex;
+// }
+
+// .dragMark.hide {
+//     display: none;
+// }
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateX(20%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes removeButton {
+    from {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(20%);
+    }
+}
+
+@keyframes checkanimate {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes circleanimate {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+// CHECKBOX ROUNDED
+// .round {
+//     position: relative;
+// }
+
+// .round label {
+//     background-color: #fff;
+//     border: 1px solid #ccc;
+//     border-radius: 50%;
+//     cursor: pointer;
+//     height: 28px;
+//     left: 0;
+//     position: absolute;
+//     top: 0;
+//     width: 28px;
+// }
+
+// .round label:after {
+//     border: 2px solid #fff;
+//     border-top: none;
+//     border-right: none;
+//     content: "";
+//     height: 6px;
+//     left: 7px;
+//     opacity: 0;
+//     position: absolute;
+//     top: 8px;
+//     transform: rotate(-45deg);
+//     width: 12px;
+// }
+
+// .round input[type="checkbox"] {
+//     visibility: hidden;
+// }
+
+// .round input[type="checkbox"]:checked+label {
+//     background-color: #66bb6a;
+//     border-color: #66bb6a;
+// }
+
+// .round input[type="checkbox"]:checked+label:after {
+//     opacity: 1;
+// }
+
+// CHECKBOX ROUNDED
+
+// TODO ITEM END
+.new-todo {}
+
+.in-progress {
+    // background-color: rgb(68, 23, 49);
+}
+
+.done-todo {
+    // background-color: rgb(117, 34, 34);
+}
